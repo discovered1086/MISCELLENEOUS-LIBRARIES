@@ -5,6 +5,7 @@ import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +41,7 @@ public class AccountEntity implements Serializable {
 	@Column(length = 50, name = "ACCT_NMBR")
 	private String accountNumber;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ACC_CRNCY", referencedColumnName = "CRRNCY_CD", nullable = false)
 	private CurrencyEntity currency;
 

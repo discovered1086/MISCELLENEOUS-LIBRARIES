@@ -8,4 +8,6 @@ import com.kingshuk.beanmapping.mapstruct.entities.AccountEntity;
 @Repository
 public interface AccountRepository extends JpaRepository<AccountEntity, Long> {
 
+	AccountEntity findByAccountNumber(String accountNumber);
+
 }

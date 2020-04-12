@@ -2,6 +2,7 @@ package com.kingshuk.beanmapping.mapstruct.mappers;
 
 import javax.annotation.Resource;
 import javax.money.CurrencyUnit;
+import javax.money.Monetary;
 
 import org.mapstruct.Mapper;
 
@@ -16,7 +17,11 @@ public abstract class CurrencyMapper {
 
 	protected CurrencyEntity mapCurrencyUnitToCurrency(CurrencyUnit currencyUnit) {
 		String currencyCode = currencyUnit.getCurrencyCode();
-		
+
 		return currencyService.getCurrencyEntity(currencyCode);
+	}
+
+	protected CurrencyUnit mapCurrencyToCurrencyUnit(CurrencyEntity currencyEntity) {
+		return Monetary.getCurrency(currencyEntity.getCurrencyCode());
 	}
 }

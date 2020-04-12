@@ -7,11 +7,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kingshuk.beanmapping.mapstruct.entities.AccountEntity;
 import com.kingshuk.beanmapping.mapstruct.entities.SimpleAccountEntity;
+import com.kingshuk.beanmapping.mapstruct.mappers.AccountMapper;
+import com.kingshuk.beanmapping.mapstruct.pojos.AccountDTO;
 import com.kingshuk.beanmapping.mapstruct.repository.AccountRepository;
 import com.kingshuk.beanmapping.mapstruct.repository.SimpleAccountRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service("accountService")
+@Slf4j
 public class AccountServiceImpl implements AccountService {
+	
+	@Autowired
+	private AccountMapper accountMapper;
 
 	@Autowired
 	private SimpleAccountRepository simpleAccountRepository;
@@ -20,15 +28,28 @@ public class AccountServiceImpl implements AccountService {
 	private AccountRepository accountRepository;
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void addAccount(SimpleAccountEntity simpleAccount) {
 		simpleAccountRepository.save(simpleAccount);
 	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public void addAccount(AccountEntity account) {
-		accountRepository.save(account);
+	public AccountDTO addAccount(AccountDTO account) {
+		log.info("The account Dto is: ", account.toString());
+
+		AccountEntity accountEntity = accountMapper.mapDtoToEntity(account);
+
+		AccountEntity savedEntity = accountRepository.save(accountEntity);
+		
+		return accountMapper.mapEntityToDto(savedEntity);
+		
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public AccountEntity getAccountEntity(String accountNumber) {
+		return accountRepository.findByAccountNumber(accountNumber);
 	}
 
 }

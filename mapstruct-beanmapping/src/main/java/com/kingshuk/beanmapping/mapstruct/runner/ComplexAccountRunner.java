@@ -8,22 +8,19 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.money.Monetary;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.kingshuk.beanmapping.mapstruct.entities.AccountEntity;
 import com.kingshuk.beanmapping.mapstruct.entities.CurrencyEntity;
-import com.kingshuk.beanmapping.mapstruct.mappers.AccountMapper;
 import com.kingshuk.beanmapping.mapstruct.pojos.AccountDTO;
 import com.kingshuk.beanmapping.mapstruct.service.AccountService;
 import com.kingshuk.beanmapping.mapstruct.service.ICurrencyService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Component
+@Slf4j
 public class ComplexAccountRunner implements CommandLineRunner {
-	
-	@Autowired
-	private AccountMapper accountMapper;
 
 	private boolean runDataScript = false;
 
@@ -53,9 +50,9 @@ public class ComplexAccountRunner implements CommandLineRunner {
 				.accountOpenningDate(ZonedDateTime.now().truncatedTo(ChronoUnit.SECONDS))
 				.currency(Monetary.getCurrency("INR")).build();
 
-		AccountEntity accountEntity = accountMapper.mapDtoToEntity(accountDto);
+		AccountDTO savedDto = accountService.addAccount(accountDto);
 
-		accountService.addAccount(accountEntity);
+		log.info("The saved Entity is: ", savedDto.toString());
 
 	}
 
