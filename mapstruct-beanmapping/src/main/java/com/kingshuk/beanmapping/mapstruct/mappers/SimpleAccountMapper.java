@@ -1,4 +1,4 @@
-package com.kingshuk.beanmapping.mapstruct.simplemapping;
+package com.kingshuk.beanmapping.mapstruct.mappers;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

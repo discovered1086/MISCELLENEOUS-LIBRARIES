@@ -20,13 +20,13 @@ public class AccountServiceImpl implements AccountService {
 	private AccountRepository accountRepository;
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void addAccount(SimpleAccountEntity simpleAccount) {
 		simpleAccountRepository.save(simpleAccount);
 	}
 	
 	@Override
-	@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void addAccount(AccountEntity account) {
 		accountRepository.save(account);
 	}

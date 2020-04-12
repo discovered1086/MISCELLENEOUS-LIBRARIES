@@ -15,12 +15,16 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Type;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "DUMMY_ACCOUNT")
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
+@Builder
 public class AccountEntity implements Serializable {
 
 	/**
