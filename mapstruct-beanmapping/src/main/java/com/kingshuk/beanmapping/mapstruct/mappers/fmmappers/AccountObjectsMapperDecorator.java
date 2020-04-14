@@ -1,4 +1,4 @@
-package com.kingshuk.beanmapping.mapstruct.mappers;
+package com.kingshuk.beanmapping.mapstruct.mappers.fmmappers;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import com.kingshuk.beanmapping.mapstruct.entities.AccountEntity;
 import com.kingshuk.beanmapping.mapstruct.pojos.AccountDTO;
 
-public abstract class AccountMapperDecorator implements AccountMapper {
+public abstract class AccountObjectsMapperDecorator implements AccountObjectsMapper {
 
 	@Autowired
 	@Qualifier("delegate")
-	private AccountMapper delegate;
+	private AccountObjectsMapper delegate;
 
 	@Override
 	public AccountEntity mapDtoToEntity(AccountDTO source) {

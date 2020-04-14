@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kingshuk.beanmapping.mapstruct.entities.AccountEntity;
 import com.kingshuk.beanmapping.mapstruct.entities.SimpleAccountEntity;
-import com.kingshuk.beanmapping.mapstruct.mappers.AccountMapper;
+import com.kingshuk.beanmapping.mapstruct.mappers.fmmappers.AccountObjectsMapper;
 import com.kingshuk.beanmapping.mapstruct.pojos.AccountDTO;
 import com.kingshuk.beanmapping.mapstruct.repository.AccountRepository;
 import com.kingshuk.beanmapping.mapstruct.repository.SimpleAccountRepository;
@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AccountServiceImpl implements AccountService {
 	
 	@Autowired
-	private AccountMapper accountMapper;
+	private AccountObjectsMapper accountMapper;
 
 	@Autowired
 	private SimpleAccountRepository simpleAccountRepository;
