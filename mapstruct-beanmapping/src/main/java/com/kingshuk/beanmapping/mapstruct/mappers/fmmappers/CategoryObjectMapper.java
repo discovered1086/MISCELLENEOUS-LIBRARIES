@@ -10,7 +10,8 @@ import org.mapstruct.ReportingPolicy;
 import com.kingshuk.beanmapping.mapstruct.entities.CategoryEntity;
 import com.kingshuk.beanmapping.mapstruct.pojos.CategoryDTO;
 
-@Mapper(componentModel = "spring", uses = SubCategoryObjectMapper.class, 
+@Mapper(componentModel = "spring", 
+		uses = {CommonDateConverter.class, SubCategoryObjectMapper.class}, 
 		unmappedTargetPolicy = ReportingPolicy.IGNORE, 
 		nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL)
 public interface CategoryObjectMapper {
